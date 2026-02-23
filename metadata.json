@@ -1,0 +1,5 @@
+{
+  "name": "Foresight Internal Dashboard",
+  "description": "Internal web dashboard for Foresight staff featuring financial news, exchange rates, and company products.",
+  "requestFramePermissions": []
+}
