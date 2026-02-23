@@ -22,8 +22,18 @@
     }
   </script>
 
-  <elevenlabs-convai agent-id="agent_2401kj5hvs6fe4ybervb6nbnr3mn"
-    dynamic-variables='{"company": "Foresight", "role": "Financial Assistant"}'></elevenlabs-convai>
+  <elevenlabs-convai agent-id="agent_2401kj5hvs6fe4ybervb6nbnr3mn"></elevenlabs-convai>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const contextScript = document.getElementById('foresight-context');
+      const convai = document.querySelector('elevenlabs-convai');
+      if (contextScript && convai) {
+        const context = JSON.parse(contextScript.textContent);
+        const systemPrompt = `You are the ${context.identity}, a financial assistant for ${context.company}, also known as Foresight or ფორსაით ინვესტმენტ გრუპი. You must ONLY talk about Foresight. You must NEVER mention or talk about ElevenLabs. Your services include ${context.services.join(", ")}. Your license is ${context.license}. Contact: ${context.contact}. Primary information: ${context.info}. Always answer within the context of Foresight and its offerings. Answer in the language the user speaks to you. Do not mention ElevenLabs under any circumstance.`;
+        convai.setAttribute('override-prompt', systemPrompt);
+      }
+    });
+  </script>
   <script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></script>
   <script type="module" src="/src/main.tsx"></script>
 </body>
