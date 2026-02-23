@@ -1,7 +1,12 @@
 {
+    "functions": {
+        "api/index.ts": {
+            "runtime": "vercel-nodejs@latest"
+        }
+    },
     "rewrites": [
         {
-            "source": "/api/(.*)",
+            "source": "/api/:match*",
             "destination": "/api"
         }
     ]

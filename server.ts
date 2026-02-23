@@ -4,8 +4,18 @@ import Parser from "rss-parser";
 const app = express();
 const PORT = 3000;
 
+// Create a router for API endpoints
+const router = express.Router();
+
+// Diagnostic middleware to track backend response source
+router.use((req, res, next) => {
+  res.setHeader("X-Debug-Backend-Source", "vercel-express-router");
+  res.setHeader("X-Debug-Path", req.path);
+  next();
+});
+
 // API routes
-app.get("/api/exchange-rates", async (req, res) => {
+router.get("/exchange-rates", async (req, res) => {
   try {
     const response = await fetch("https://nbg.gov.ge/gw/api/ct/monetarypolicy/currencies/en/json");
     if (!response.ok) throw new Error("NBG API failed");
@@ -17,7 +27,7 @@ app.get("/api/exchange-rates", async (req, res) => {
   }
 });
 
-app.get("/api/global-news", async (req, res) => {
+router.get("/global-news", async (req, res) => {
   try {
     const apiKey = "72938bb28cec480aa536b3b9ddfcba27";
     const response = await fetch(`https://newsapi.org/v2/top-headlines?category=business&language=en&apiKey=${apiKey}`);
@@ -54,7 +64,7 @@ app.get("/api/global-news", async (req, res) => {
   }
 });
 
-app.get("/api/local-news", async (req, res) => {
+router.get("/local-news", async (req, res) => {
   try {
     const feeds = [
       "https://civil.ge/feed",
@@ -112,6 +122,16 @@ app.get("/api/local-news", async (req, res) => {
     console.error("Local news global error:", error);
     res.status(500).json({ error: "Failed to fetch local news" });
   }
+});
+
+// Mount the router on both /api and root to be flexible with Vercel rewrites
+app.use("/api", router);
+app.use("/", (req, res, next) => {
+  // If it looks like an API call but missed /api/ mount, handle it here
+  if (req.path === "/exchange-rates" || req.path === "/global-news" || req.path === "/local-news") {
+    return router(req, res, next);
+  }
+  next();
 });
 
 // Vite middleware for development - Wrap in an async block to avoid top-level await issues in some environments

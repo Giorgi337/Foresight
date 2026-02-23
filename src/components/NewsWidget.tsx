@@ -20,7 +20,12 @@ export default function NewsWidget({ type }: { type: "global" | "local" }) {
     const fetchNews = async () => {
       try {
         const endpoint = type === "global" ? "/api/global-news" : "/api/local-news";
+        console.log(`[NewsWidget] Fetching ${type} news from: ${endpoint}`);
+
         const res = await fetch(endpoint);
+        console.log(`[NewsWidget] ${type} news response status: ${res.status}`);
+        console.log(`[NewsWidget] ${type} news debug source: ${res.headers.get("X-Debug-Backend-Source")}`);
+
         const data = await res.json();
 
         if (type === "global" && data.articles) {
@@ -29,7 +34,7 @@ export default function NewsWidget({ type }: { type: "global" | "local" }) {
           setNews(data);
         }
       } catch (error) {
-        console.error(`Failed to fetch ${type} news:`, error);
+        console.error(`[NewsWidget] Failed to fetch ${type} news:`, error);
       } finally {
         setLoading(false);
       }
