@@ -9,8 +9,8 @@ export default function Hero() {
     offset: ["start start", "end end"],
   });
 
-  // 24 frames
-  const frameCount = 24;
+  // 18 frames
+  const frameCount = 18;
   const frames = useMemo(() => {
     return Array.from({ length: frameCount }, (_, i) =>
       `/assets/logo-animation/ezgif-frame-${String(i + 1).padStart(3, '0')}.jpg`
