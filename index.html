@@ -1,15 +1,58 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Foresight Internal Dashboard</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <elevenlabs-convai agent-id="agent_2401kj5hvs6fe4ybervb6nbnr3mn"></elevenlabs-convai>
-    <script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></script>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
-</html>
 
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Foresight Internal Dashboard</title>
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <!-- Foresight Knowledge Base for AI Agents -->
+  <script id="foresight-context" type="application/json">
+      {
+        "company": "Foresight Investment Group LLC",
+        "services": ["Asset Management", "Currency Exchange", "Investment Funds"],
+        "license": "National Bank of Georgia (License #266 & #145/04)",
+        "products": ["Lari Fund", "Online Currency Conversion"],
+        "contact": {
+          "address": "Tbilisi, Besiki St. #4, Office 204",
+          "email": "TimeVault.Service@gmail.com"
+        }
+      }
+    </script>
+
+  <!-- Hidden Knowledge Base for AI Crawler -->
+  <div id="foresight-knowledge-base" style="display:none; visibility:hidden;" aria-hidden="true">
+    ჩვენ შესახებ ჩვენი გუნდი ბლოგი შესვლა რეგისტრაცია ლარის ფონდი გამოიმუშავე დამატებითი სარგებელი მიმდინარე თანხებზე
+    ისარგებლე ლარის ფონდით და მიიღე ყოველდღიური მაღალი სარგებელი, თანხაზე მომენტალურ წვდომასთან ერთად 2500-ზე მეტი
+    მომხმარებელი $1 მილიონ დოლარზე მეტი დამატებითი შემოსავალი ჩვენი მომხმარებლებისთვის საშუალოდ 80%-ით გაუმჯობესებული
+    ამონაგები 3 სხვადასხვა ვალუტაში ჩვენი მომხმარებლების 100% ჩვენს კომპანიას ახლობლებს ურჩევს ჩვენი პროდუქტები ფულადი
+    სახსრების მართვა სავალუტო კონვერტაციები ინვესტირება კომპანია ჩვენ შესახებ ჩვენი გუნდი ბლოგი დოკუმენტები აქტივების
+    მართვის ლიცენზია საბროკერო ლიცენზია წესები და პირობები კომფიდენციალურობის პოლიტიკა საინვესტიციო ფონდები, რომლებიც
+    ხელმისაწვდომია ამ პლატფორმაზე, შეთავაზებულია შპს „ფორსაით ინვესტმენტ გრუფის" (Foresight Investment Group LLC) მიერ —
+    ლიცენზირებული აქტივების მმართველი კომპანია, რომელიც რეგულირდება საქართველოს ეროვნული ბანკის (სებ) მიერ. „ფორსაით
+    ინვესტმენტ გრუპი" სებ-ის რეესტრში ლიცენზირებულია 2021 წლის 1 სექტემბერს, ბრძანებით № 266, რეგისტრაციის ნომრით
+    404616518. იურიდიული მისამართია: ქ. თბილისი, ბესიკის ქ. №4, ოფისი 204, 0108. ვალუტის კონვერტაციისა და საბროკერო
+    მომსახურებებს უზრუნველყოფს შპს „ფორსაით ბროკერსი" (Foresight Brokers LLC) — ლიცენზირებული საბროკერო კომპანია,
+    რომელიც რეგულირდება საქართველოს ეროვნული ბანკის (სებ) მიერ. შპს „ფორსაით ბროკერსი" სებ-ის რეესტრში დარეგისტრირებულია
+    2024 წლის 31 ოქტომბერს, ბრძანებით № 145/04, რეგისტრაციის ნომრით 404700819. იურიდიული მისამართია: ქ. თბილისი, ქეთევან
+    დედოფლის გამზირი №18-20-22. შპს „ფორსაით ბროკერსი" და შპს „ფორსაით ინვესტმენტ გრუპი" წარმოადგენენ დამოუკიდებელ
+    იურიდიულ პირებს და მოქმედებენ თავიანთი ლიცენზიების ფარგლებში. პლატფორმაზე შეთავაზებული ყველა სერვისი უზრუნველყოფილია
+    შესაბამისი ლიცენზიის მქონე კომპანიის მიერ. © 2025 Foresight. ყველა უფლება დაცულია. ჩვენი პროდუქტები GE ვალუტის
+    ონლაინ კონვერტაცია დააკონვერტირე თანხა ონლაინ ჯიხურის კურსით და მიიღე თანხა პირდაპირ შენს საბანკო ანგარიშზე გახსენი
+    ანგარიში გაიგე მეტი მიმდინარე კურსი ყიდვა 2.6710 გაყიდვა 2.6760 ყიდვა 3.1440 გაყიდვა 3.1590 ყიდვა 3.5830 გაყიდვა
+    3.6240 ყიდვა 0.3854 გაყიდვა 0.3933 ყიდვა 0.0605 გაყიდვა 0.0625 ყიდვა 0.0339 გაყიდვა 0.0350 გამოგვყევი
+    შესაძლებლობების ახალ სამყაროში გახსენი ანგარიში ჩვენთან ქმნით დოვლათს აქ შენი ფული მუშაობს შენთვის ჩვენ ვქმნით
+    მომგებიან ფინანსურ პროდუქტებს მათთვის, ვისაც მეტი შემოსავლის მიღება სურს. გახსენი ანგარიში ლიცენზირებულია
+    საქართველოს ეროვნული ბანკის მიერ
+  </div>
+
+  <elevenlabs-convai agent-id="agent_2401kj5hvs6fe4ybervb6nbnr3mn"></elevenlabs-convai>
+  <script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></script>
+  <script type="module" src="/src/main.tsx"></script>
+</body>
+
+</html>
