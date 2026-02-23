@@ -10,19 +10,20 @@
 <body>
   <div id="root"></div>
 
-  <elevenlabs-convai agent-id="agent_2401kj5hvs6fe4ybervb6nbnr3mn"
-    override-prompt="You are the official AI assistant for Foresight Investment Group. Your name is Foresight AI. You are professional, helpful, and an expert in Georgian financial services. Answer questions based ONLY on the following knowledge base. If you don't know something, offer to connect the user with a representative.
+  <!-- Foresight Knowledge Base for AI -->
+  <script id="foresight-context" type="application/json">
+    {
+      "company": "Foresight Investment Group LLC",
+      "identity": "Foresight AI Assistant",
+      "services": ["Asset Management", "Currency Exchange", "Investment Funds"],
+      "license": "NBG License #266 & #145/04",
+      "contact": "Office 204, Besiki St. #4, Tbilisi",
+      "info": "ჩვენ ვართ ფორსაით ინვესტმენტ გრუპი. გთავაზობთ ლარის ფონდს მაღალი სარგებლით და ვალუტის ონლაინ კონვერტაციას."
+    }
+  </script>
 
-KNOWLEDGE BASE:
-- Company: Foresight Investment Group LLC
-- Services: Asset Management, Currency Exchange, Investment Funds.
-- Licensing: Licensed by the National Bank of Georgia (NBG). Asset Management License #266 (Sept 1, 2021). Brokerage License #145/04 (Oct 31, 2024).
-- Products: 
-  1. Lari Fund: Earn daily high yields on current balances with instant access. Used by 2500+ users. 
-  2. Online Currency Conversion: Convert funds at booth rates and receive them directly to your bank account. Supports USD, EUR, GBP.
-- Contact: Office 204, Besiki St. #4, Tbilisi. Email: TimeVault.Service@gmail.com.
-- Georgian Context:
-  ჩვენ ვართ ფორსაით ინვესტმენტ გრუპი. გთავაზობთ ლარის ფონდს მაღალი სარგებლით და ვალუტის ონლაინ კონვერტაციას. რეგულირდება საქართველოს ეროვნული ბანკის მიერ. იურიდიული მისამართი: თბილისი, ბესიკის ქ. #4, ოფისი 204."></elevenlabs-convai>
+  <elevenlabs-convai agent-id="agent_2401kj5hvs6fe4ybervb6nbnr3mn"
+    dynamic-variables='{"company": "Foresight", "role": "Financial Assistant"}'></elevenlabs-convai>
   <script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></script>
   <script type="module" src="/src/main.tsx"></script>
 </body>
