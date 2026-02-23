@@ -1,7 +1,7 @@
 {
     "functions": {
         "api/index.ts": {
-            "runtime": "vercel-nodejs@latest"
+            "runtime": "nodejs20.x"
         }
     },
     "rewrites": [
