@@ -22,7 +22,7 @@ export default function NewsWidget({ type }: { type: "global" | "local" }) {
         const endpoint = type === "global" ? "/api/global-news" : "/api/local-news";
         const res = await fetch(endpoint);
         const data = await res.json();
-        
+
         if (type === "global" && data.articles) {
           setNews(data.articles.slice(0, 10));
         } else if (type === "local") {
@@ -56,54 +56,64 @@ export default function NewsWidget({ type }: { type: "global" | "local" }) {
           </span>
         </h2>
       </div>
-      
-      <div className="flex-1 overflow-y-auto custom-scrollbar p-6 space-y-6">
-        {news.map((item, i) => {
-          const title = item.title;
-          const link = item.link || item.url;
-          const date = item.pubDate || item.publishedAt;
-          const source = typeof item.source === 'string' ? item.source : (item as any).source?.name;
-          const image = item.urlToImage;
 
-          return (
-            <a 
-              key={i} 
-              href={link} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="group block"
-            >
-              <article className="flex gap-4">
-                {image && (
-                  <div className="w-24 h-24 shrink-0 rounded-xl overflow-hidden bg-gray-100 hidden sm:block">
-                    <img src={image} alt="" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                  </div>
-                )}
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2 text-xs text-gray-500 mb-2">
-                    <span className="font-semibold text-foresight-orange">{source}</span>
-                    <span>•</span>
-                    <span className="flex items-center gap-1">
-                      <Clock className="w-3 h-3" />
-                      {new Date(date || "").toLocaleDateString()}
-                    </span>
-                  </div>
-                  <h3 className="font-semibold text-gray-900 leading-snug group-hover:text-foresight-orange transition-colors line-clamp-2">
-                    {title}
-                  </h3>
-                  {item.contentSnippet && (
-                    <p className="text-sm text-gray-500 mt-2 line-clamp-2">
-                      {item.contentSnippet}
-                    </p>
+      <div className="flex-1 overflow-y-auto custom-scrollbar p-6 space-y-6">
+        {news.length > 0 ? (
+          news.map((item, i) => {
+            const title = item.title;
+            const link = item.link || item.url;
+            const date = item.pubDate || item.publishedAt;
+            const source = typeof item.source === 'string' ? item.source : (item as any).source?.name;
+            const image = item.urlToImage;
+
+            return (
+              <a
+                key={i}
+                href={link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group block"
+              >
+                <article className="flex gap-4">
+                  {image && (
+                    <div className="w-24 h-24 shrink-0 rounded-xl overflow-hidden bg-gray-100 hidden sm:block">
+                      <img src={image} alt="" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                    </div>
                   )}
-                </div>
-                <div className="shrink-0 pt-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <ExternalLink className="w-4 h-4 text-foresight-orange" />
-                </div>
-              </article>
-            </a>
-          );
-        })}
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2 text-xs text-gray-500 mb-2">
+                      <span className="font-semibold text-foresight-orange">{source}</span>
+                      <span>•</span>
+                      <span className="flex items-center gap-1">
+                        <Clock className="w-3 h-3" />
+                        {new Date(date || "").toLocaleDateString()}
+                      </span>
+                    </div>
+                    <h3 className="font-semibold text-gray-900 leading-snug group-hover:text-foresight-orange transition-colors line-clamp-2">
+                      {title}
+                    </h3>
+                    {item.contentSnippet && (
+                      <p className="text-sm text-gray-500 mt-2 line-clamp-2">
+                        {item.contentSnippet}
+                      </p>
+                    )}
+                  </div>
+                  <div className="shrink-0 pt-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <ExternalLink className="w-4 h-4 text-foresight-orange" />
+                  </div>
+                </article>
+              </a>
+            );
+          })
+        ) : (
+          <div className="h-full flex flex-col items-center justify-center text-center p-8">
+            <div className="w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center mb-4 text-gray-300">
+              <Clock className="w-8 h-8" />
+            </div>
+            <h3 className="text-gray-900 font-semibold mb-1">No news available</h3>
+            <p className="text-gray-500 text-sm">We're having trouble fetching the latest updates. Please check back shortly.</p>
+          </div>
+        )}
       </div>
     </div>
   );
